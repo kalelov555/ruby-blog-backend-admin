@@ -1,0 +1,49 @@
+<style>
+  table {
+    text-align:left; 
+    font-size:17px; 
+    padding:10px
+  }
+  th {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  button {
+    background-color: red;
+    color: #fff;
+    border: 0.5px solid gray; 
+  }
+  #create {
+    background-color: green;
+    padding: 5px;
+  }
+  #create a {
+    color: #fff;
+  }
+</style>
+
+<h1 style="color:blue;">Hello, Admin</h1>
+
+<section id="table">
+  <table>
+    <thead>
+      <tr>
+        <th>slug</th>
+        <th>description</th>
+        <th>visible</th>
+      </tr>  
+    </thead>
+    <% @articles.each do |article| %>
+      <tr>
+        <th><a href="/admin/articles/<%=article.slug%>"><%= article.slug %></a></th>
+        <th><%= article.description.first(20) + "..." %></th>
+        <th><%= article.visible %></th>
+        <th>
+          <%= button_to "Delete", {:controller => "articles", :action => 'destroy', :slug => article.slug}, 
+          :confirm => "Are you sure you want to unfriend #{article.title}?", :method => :delete %>          
+        </th>
+      </tr>  
+    <% end %>
+  </table>
+  <button id="create"><a href="/admin/create/articles/">Create new article</a></button>
+</section>

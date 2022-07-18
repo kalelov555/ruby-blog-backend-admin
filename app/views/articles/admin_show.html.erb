@@ -1,0 +1,19 @@
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  input {
+    margin: 15px 0 15px 0;
+  }
+</style>
+
+<%= form_with(model: @article, :url => { :action => "update" }, method: "patch") do |article_form| %>
+  <%=article_form.text_field :title %>
+  <%=article_form.text_area :description, size: "60x10" %>
+  <%=article_form.check_box :visible %>
+  <%= article_form.submit %>
+<% end %>
+
+

@@ -1,0 +1,27 @@
+<style>
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: left;
+  }
+  input {
+    margin: 15px 0 15px 0;
+  }
+</style>
+
+<h1>Create new article</h1>
+
+<%= form_with(model: @article, url: {action: 'create'}, method: 'post', html: {class: 'form'}) do |form| %>
+  <%= label_tag(:title, "Title") %>
+  <%= form.text_field :title %>
+  <%= label_tag(:description, "Description") %>
+  <%= form.text_area :description, size: "60x10" %> 
+  <%= label_tag(:visible, "visible") %>
+  <%= form.check_box :visible %> 
+  <%= label_tag(:images, "images") %>
+  <%= form.text_field :images, multiple: true %>
+  <%= form.text_field :images, multiple: true %>
+  
+  <%= form.button "Save"%>
+<% end %>
